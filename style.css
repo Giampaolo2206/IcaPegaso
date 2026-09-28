@@ -1,25 +1,29 @@
 /* ========================================= */
-/* COMPORTAMENTO GLOBALE DELLA PAGINA       */
+/* COMPORTAMENTO GLOBALE                     */
 /* ========================================= */
 
 html {
     scroll-behavior: smooth;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #d8f3dc;
-    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 
 /* ========================================= */
-/* BARRA DI NAVIGAZIONE                        */
+/* BARRA DI NAVIGAZIONE                      */
 /* ========================================= */
 
 .barranav {
-    height: 3cm;
+    min-height: 3cm;
     background-color: white;
 
     display: flex;
@@ -31,17 +35,20 @@ body {
     z-index: 1000;
 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+    padding: 15px 30px;
 }
 
 .barranav img {
-    margin-left: 1cm;
+    max-width: 180px;
+    height: auto;
+    display: block;
 }
 
 .voci-menu {
     display: flex;
 
     margin-left: auto;
-    margin-right: 2cm;
 
     gap: 30px;
 }
@@ -54,6 +61,8 @@ body {
     font-weight: bold;
 
     padding: 10px 5px;
+
+    transition: color 0.2s ease;
 }
 
 .voce-menu:hover {
@@ -72,9 +81,9 @@ body {
     flex-direction: column;
     align-items: center;
 
-    padding: 2cm 1cm;
+    padding: 60px 20px;
 
-    box-sizing: border-box;
+    width: 100%;
 }
 
 
@@ -94,11 +103,9 @@ body {
 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
-    margin-bottom: 2cm;
+    margin-bottom: 60px;
 
-    scroll-margin-top: 3.5cm;
-
-    box-sizing: border-box;
+    scroll-margin-top: 120px;
 }
 
 .text-section h1 {
@@ -123,10 +130,6 @@ body {
     margin-bottom: 20px;
 }
 
-.text-section p:last-child {
-    margin-bottom: 0;
-}
-
 
 /* ========================================= */
 /* FOTO + DESCRIZIONE                       */
@@ -135,15 +138,31 @@ body {
 .about-photo {
     display: flex;
     align-items: flex-start;
+
     gap: 40px;
+
     width: 100%;
+
     margin-top: 60px;
     margin-bottom: 60px;
 }
 
-/* Prima foto: descrizione a sinistra, foto a destra */
+/*
+   Prima foto:
+   testo a sinistra
+   foto a destra
+*/
 .about-photo:not(.reverse) {
     flex-direction: row-reverse;
+}
+
+/*
+   Seconda foto:
+   foto a sinistra
+   testo a destra
+*/
+.about-photo.reverse {
+    flex-direction: row;
 }
 
 
@@ -153,13 +172,11 @@ body {
 
 .about-image {
     width: 55%;
-
     flex-shrink: 0;
 }
 
 .about-image img {
     width: 100%;
-
     height: auto;
 
     display: block;
@@ -174,6 +191,7 @@ body {
 
 .about-description {
     flex: 1;
+    min-width: 0;
 }
 
 .about-description h2 {
@@ -226,10 +244,10 @@ body {
 
     padding: 20px;
 
-    box-sizing: border-box;
-
     display: flex;
     flex-direction: column;
+
+    min-width: 0;
 }
 
 
@@ -257,7 +275,6 @@ body {
 
 .pillar-list {
     margin: 0;
-
     padding-left: 20px;
 }
 
@@ -273,15 +290,18 @@ body {
 
 
 /* ========================================= */
-/* BOX DOWNLOAD REPORT                      */
+/* BOX REPORT DI SOSTENIBILITÀ              */
 /* ========================================= */
 
-.download-box {
+.bilancio-box {
     width: 400px;
+    max-width: calc(100% - 40px);
 
-    max-width: 90%;
+    margin: 0 auto 40px;
 
     padding: 30px;
+
+    text-align: center;
 
     background-color: #f5f5f5;
 
@@ -289,42 +309,19 @@ body {
 
     border-radius: 12px;
 
-    text-align: center;
-
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
-    box-sizing: border-box;
-
-    margin-top: 20px;
-
-    margin-bottom: 2cm;
-
-    margin-left: auto;
-    margin-right: auto;
 }
 
-
-/* ========================================= */
-/* TITOLO DOWNLOAD                          */
-/* ========================================= */
-
-.download-box h2 {
+.bilancio-box h2 {
     margin-top: 0;
 
-    color: #222;
+    color: #333;
 }
 
+.bilancio-box p {
+    color: #555;
 
-/* ========================================= */
-/* TESTO DOWNLOAD                           */
-/* ========================================= */
-
-.download-box p {
-    color: #666;
-
-    margin-bottom: 25px;
-
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 
@@ -335,9 +332,11 @@ body {
 .download-button {
     display: inline-block;
 
-    padding: 12px 25px;
+    margin-top: 15px;
 
-    background-color: #007bff;
+    padding: 12px 24px;
+
+    background-color: #0066cc;
 
     color: white;
 
@@ -347,124 +346,38 @@ body {
 
     font-weight: bold;
 
-    transition: background-color 0.3s ease;
-}
-
-
-/* ========================================= */
-/* HOVER PULSANTE                           */
-/* ========================================= */
-
-.download-button:hover {
-    background-color: #0056b3;
-}
-
-
-
-/* ========================================= */
-/* COPYRIGHT                                */
-/* ========================================= */
-
-.footer-copy {
-    margin: 30px 0 0 0;
-
-    font-size: 13px;
-
-    color: rgba(255, 255, 255, 0.75);
-}
-
-
-/* ========================================= */
-/* RESPONSIVE - TABLET                     */
-/* ========================================= */
-
-@media (max-width: 900px) {
-
-    .barranav {
-        height: auto;
-
-        min-height: 80px;
-
-        padding: 15px 20px;
-
-        box-sizing: border-box;
-    }
-
-    .barranav img {
-        margin-left: 0;
-
-        max-width: 150px;
-
-        height: auto;
-    }
-
-    .voci-menu {
-        margin-right: 0;
-
-        gap: 15px;
-    }
-
-    .voce-menu {
-        font-size: 16px;
-    }
-
-    .text-section {
-        padding: 30px;
-    }
-}
-
-.bilancio-box {
-    width: 400px;
-    margin: 25px auto;
-    padding: 30px;
-    text-align: center;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
-    position: relative;
-    top: -2cm;
-}
-
-.bilancio-box h2 {
-    margin-top: 0;
-    color: #333;
-}
-
-.bilancio-box p {
-    color: #555;
-}
-
-.download-button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 24px;
-    background-color: #0066cc;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.3s;
+    transition:
+        background-color 0.3s ease,
+        transform 0.2s ease;
 }
 
 .download-button:hover {
     background-color: #004c99;
+
+    transform: translateY(-2px);
 }
+
+
+/* ========================================= */
+/* SOCIAL BAR                               */
+/* ========================================= */
 
 .social-bar {
     width: 100%;
+
     min-height: 65px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 25px;
 
-    margin-top: 30px;
+    margin-top: 0;
 
     padding: 10px 20px;
-
-    box-sizing: border-box;
 
     background-color: #f5f1eb;
 
@@ -474,13 +387,19 @@ body {
 
 .social-title {
     color: #4b3030;
+
     font-family: Georgia, serif;
+
     font-size: 18px;
+
+    text-align: center;
 }
 
 .social-links {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 }
 
@@ -489,25 +408,30 @@ body {
     height: 38px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     border-radius: 50%;
 
     color: white;
+
     text-decoration: none;
 
     font-size: 18px;
 
-    transition: transform 0.25s ease,
-                opacity 0.25s ease,
-                box-shadow 0.25s ease;
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        box-shadow 0.25s ease;
 }
+
 
 /* Facebook */
 .social-links a:nth-child(1) {
     background-color: #1877f2;
 }
+
 
 /* Instagram */
 .social-links a:nth-child(2) {
@@ -519,14 +443,385 @@ body {
     );
 }
 
+
 /* YouTube */
 .social-links a:nth-child(3) {
     background-color: #ff0000;
 }
 
-/* Effetto mouse */
+
+/* Hover */
 .social-links a:hover {
     transform: translateY(-3px);
+
     opacity: 0.9;
+
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ========================================= */
+/* TABLET                                   */
+/* 901px → desktop                          */
+/* 601px → 900px tablet                     */
+/* ========================================= */
+
+@media (max-width: 900px) {
+
+    /* NAVBAR */
+
+    .barranav {
+        min-height: 80px;
+
+        padding: 15px 20px;
+    }
+
+    .barranav img {
+        max-width: 150px;
+    }
+
+    .voci-menu {
+        gap: 15px;
+    }
+
+    .voce-menu {
+        font-size: 16px;
+    }
+
+
+    /* CONTENUTO */
+
+    .page-content {
+        padding: 40px 15px;
+    }
+
+
+    /* SEZIONE */
+
+    .text-section {
+        padding: 30px;
+
+        margin-bottom: 40px;
+    }
+
+    .text-section h1 {
+        font-size: 28px;
+    }
+
+
+    /* FOTO + TESTO */
+
+    .about-photo {
+        gap: 25px;
+
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .about-image {
+        width: 50%;
+    }
+
+    .about-description h2 {
+        font-size: 21px;
+    }
+
+
+    /* PILASTRI */
+
+    .pillars-container {
+        flex-wrap: wrap;
+    }
+
+    .pillar-box {
+        flex: 1 1 calc(50% - 10px);
+    }
+
+    /*
+       Il terzo pilastro occupa tutta
+       la larghezza disponibile
+    */
+    .pillar-box:last-child {
+        flex-basis: 100%;
+    }
+
+
+    /* SOCIAL */
+
+    .social-bar {
+        gap: 18px;
+    }
+
+    .social-title {
+        font-size: 16px;
+    }
+}
+
+
+/* ========================================= */
+/* SMARTPHONE                               */
+/* Fino a 600px                             */
+/* ========================================= */
+
+@media (max-width: 600px) {
+
+    /* ===================================== */
+    /* NAVBAR                                */
+    /* ===================================== */
+
+    .barranav {
+        min-height: auto;
+
+        padding: 12px 15px;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .barranav img {
+        max-width: 130px;
+
+        margin: 0 auto;
+    }
+
+    .voci-menu {
+        width: 100%;
+
+        margin: 0;
+
+        justify-content: center;
+
+        gap: 5px;
+    }
+
+    .voce-menu {
+        font-size: 14px;
+
+        padding: 8px 6px;
+
+        text-align: center;
+    }
+
+
+    /* ===================================== */
+    /* CONTENUTO                             */
+    /* ===================================== */
+
+    .page-content {
+        padding: 25px 10px;
+    }
+
+
+    /* ===================================== */
+    /* SEZIONI                               */
+    /* ===================================== */
+
+    .text-section {
+        padding: 20px 15px;
+
+        border-radius: 8px;
+
+        margin-bottom: 30px;
+
+        scroll-margin-top: 130px;
+    }
+
+    .text-section h1 {
+        font-size: 24px;
+
+        line-height: 1.2;
+
+        padding-bottom: 10px;
+    }
+
+    .text-section p {
+        font-size: 15px;
+
+        line-height: 1.6;
+    }
+
+
+    /* ===================================== */
+    /* FOTO + TESTO                          */
+    /* ===================================== */
+
+    .about-photo,
+    .about-photo.reverse,
+    .about-photo:not(.reverse) {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+
+    .about-image {
+        width: 100%;
+    }
+
+    .about-description {
+        width: 100%;
+    }
+
+    .about-description h2 {
+        font-size: 20px;
+
+        line-height: 1.3;
+    }
+
+    .about-description p {
+        font-size: 15px;
+
+        line-height: 1.6;
+    }
+
+
+    /* ===================================== */
+    /* PILASTRI                              */
+    /* ===================================== */
+
+    .pillars-container {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        margin-top: 20px;
+    }
+
+    .pillar-box,
+    .pillar-box:last-child {
+        flex: none;
+
+        width: 100%;
+    }
+
+    .pillar-box {
+        padding: 18px;
+    }
+
+    .pillar-box h2 {
+        font-size: 18px;
+    }
+
+    .pillar-list {
+        padding-left: 20px;
+    }
+
+    .pillar-list li {
+        font-size: 14px;
+
+        line-height: 1.5;
+    }
+
+
+    /* ===================================== */
+    /* REPORT                                */
+    /* ===================================== */
+
+    .bilancio-box {
+        width: calc(100% - 30px);
+
+        max-width: 400px;
+
+        padding: 25px 18px;
+
+        margin: 0 auto 30px;
+    }
+
+    .bilancio-box h2 {
+        font-size: 22px;
+    }
+
+    .bilancio-box p {
+        font-size: 15px;
+
+        line-height: 1.5;
+    }
+
+    .download-button {
+        width: 100%;
+
+        padding: 13px 15px;
+
+        text-align: center;
+    }
+
+
+    /* ===================================== */
+    /* SOCIAL                                */
+    /* ===================================== */
+
+    .social-bar {
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 18px 15px;
+    }
+
+    .social-title {
+        font-size: 15px;
+
+        line-height: 1.4;
+
+        max-width: 100%;
+    }
+
+    .social-links {
+        gap: 10px;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* ========================================= */
+/* SMARTPHONE MOLTO PICCOLO                 */
+/* Fino a 400px                             */
+/* ========================================= */
+
+@media (max-width: 400px) {
+
+    .barranav img {
+        max-width: 110px;
+    }
+
+    .voce-menu {
+        font-size: 13px;
+
+        padding: 7px 4px;
+    }
+
+    .text-section {
+        padding: 18px 12px;
+    }
+
+    .text-section h1 {
+        font-size: 22px;
+    }
+
+    .about-description h2 {
+        font-size: 18px;
+    }
+
+    .about-description p,
+    .text-section p {
+        font-size: 14px;
+    }
+
+    .pillar-box {
+        padding: 15px;
+    }
+
+    .bilancio-box {
+        padding: 20px 15px;
+    }
 }
